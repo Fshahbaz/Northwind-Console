@@ -43,6 +43,7 @@ namespace NorthwindConsole
                         Console.WriteLine("Enter Category Name:");
                         category.CategoryName = Console.ReadLine();
                         Console.WriteLine("Enter the Category Description:");
+                        
                         category.Description = Console.ReadLine();
 
                         ValidationContext context = new ValidationContext(category, null, null);
@@ -62,7 +63,9 @@ namespace NorthwindConsole
                             else
                             {
                                 logger.Info("Validation passed");
-                                // TODO: save category to db
+                                // save category to db
+                                db.Categories.Add(category);
+                                db.SaveChanges();
                             }
                         }
                         if (!isValid)
